@@ -1,0 +1,22 @@
+model: GCN(
+  (conv1): GCNConv(200, 200)
+  (conv2): GCNConv(200, 128)
+  (read_out_mlp): Linear(in_features=128, out_features=8, bias=True)
+  (fc1): Linear(in_features=1600, out_features=200, bias=True)
+  (bn1): BatchNorm1d(200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (fc2): Linear(in_features=200, out_features=2, bias=True)
+)
+
+ Parameters : Namespace(device=device(type='cuda', index=0), mode='cross', remark='combine template', seed=500, lr=1e-05, weight_decay=0.01, batch_size=16, num_epochs=1000, optim='Adam', betas=(0.5, 0.9), momentum=0.9, gamma=0.995, info_gain_weight=[0.522, 0.478], embCh=[200, 128, 64], numROI=200, p_value=0.1, dropout_ratio=0.5, timestamp='20230330023813', root_dir='Data/', pheno_path='Data/Phenotypic_V1_0b_preprocessed1.csv')
+
+ Optimizer C : Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.5, 0.9)
+    eps: 1e-08
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0.01
+)
+
+ 
