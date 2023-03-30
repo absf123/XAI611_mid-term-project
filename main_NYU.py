@@ -10,7 +10,7 @@ import torch.nn as nn
 from datetime import datetime
 from sklearn.model_selection import train_test_split
 
-from data_preprocessing import data_loader, multi_site_data_load, get_ids
+from data_preprocessing import data_loader
 from metric import accuracy, sensitivity, specificity, get_clf_eval
 from model import GAT, GCN, ChebyNet
 from seed import set_seed
