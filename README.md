@@ -4,17 +4,17 @@ autism spectrum disorder classification with multi site dataset
 
 ## 1. Introduction
 
-project goal
+### project goal
 
 - Developing a deep learning model for Autism Classification with multi-site fMRI dataset  
   ABIDE: large-scale multi-site dataset
 - Improving the ASD classification performance of the NYU site by adding data from other multi-site sources to the training dataset  
 
-data structure
+### data structure
 
-node: region of interest
-edge: functional connectivity
-node features: a row of functional connectivity
+node: region of interest  
+edge: functional connectivity  
+node features: a row of functional connectivity  
 
 ## 2. Code description
 ```shell
@@ -66,16 +66,15 @@ parser.add_argument('--optim', default="Adam", type=str, help='optimizer')
 parser.add_argument('--betas', default=(0.5, 0.9), type=tuple, help='adam betas')
 parser.add_argument("--momentum", default=0.9, type=float, help="optimizer momentum - SGD, MADGRAD")
 parser.add_argument("--gamma", default=0.995, type=float, help="gamma for lr learning")
-parser.add_argument("--info_gain_weight", default=[0.522, 0.478], type=list, help="info gain weight")
 
 # GNN parameter
 parser.add_argument("--embCh", default="[200, 128, 64]", type=str, help="")  # gnn channel
-parser.add_argument("--numROI", default=200, type=int, help="cc200")  # number of RoI
+parser.add_argument("--numROI", default=200, type=int, help="cc200")  # number of RoI & intial node features dimension
 parser.add_argument("--p_value", default=0.1, type=float, help="topology ratio")  # p_value
 parser.add_argument("--dropout_ratio", default=0.5, type=float)
 # directory path
 parser.add_argument("--timestamp", default=timestamp, type=str, help="")
-parser.add_argument('--root_dir', default="Data/", type=str, help='Download dir')
+parser.add_argument('--root_dir', default="Data/", type=str, help='Download dir')  # Data, results root directory 
 ```
 
 ### Environment-수정필요
@@ -101,6 +100,11 @@ YALE | SIEMENS Trio | 28/28
 https://drive.google.com/drive/folders/1fDH3ULunE0tSVefErfpaZr7LX9vkEAjS?usp=share_link
 
 ## 4. Experiments
+
+Site | ACC | SENS | SPEC | F1
+---- | ---- | ---- | ---- | ---- |
+(1) NYU | 55.12 | 56.34 | 54.22 | 51.22
+(2) w multi site | 61.52 | 46.60 | 72.70 | 50.16
 
 ## 5. Reference
 #### Dataset & code
