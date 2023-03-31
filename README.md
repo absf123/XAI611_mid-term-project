@@ -1,6 +1,7 @@
 # XAI611: mid-term-project
 autism spectrum disorder classification with multi site dataset
 
+"The description may be partially updated until April 3rd"
 
 ## 1. Introduction
 
@@ -16,7 +17,16 @@ node: region of interest
 edge: functional connectivity  
 node features: a row of functional connectivity  
 
+Edge construction [will be updated]
+- t_test:  
+We separated ASD and TC subjects into groups, conducted t-tests for each node, and assigned connectivity based only on significant p-values.  
+
+"You can also use other edge topology(connection) methods such as KNN(K-nearest neighbor)."
+
+""
+
 ## 2. Code description
+### Structure
 ```shell
 .
 ├── README.md
@@ -52,8 +62,29 @@ node features: a row of functional connectivity
 │   └── GAT()
 └── seed.py
     └── set_seed()
+```
+
+### Python Script Execution Guide
+
+```shell
+Data: results & Data_folder directroy
+
+main_NYU.py: only NYU dataset training
+
+main_NYU_with_multi_site.py: training with other multi-site data
+
+data_preprocessing.py: data_loader
+
+graph_preprocessing.py: define edge topology & determine graph sparsity
+
+model.py: GCN, GAT, ChebNet
+
+metric.py: binary classification metrics (ACC, SENS, SPEC, F1)
+
+seed.py: To fix random seed for reproducibility and comparison of baseline performance
 
 ```
+
 ### hyperparameter
 ```shell
 
@@ -76,13 +107,34 @@ parser.add_argument("--dropout_ratio", default=0.5, type=float)
 parser.add_argument("--timestamp", default=timestamp, type=str, help="")
 parser.add_argument('--root_dir', default="Data/", type=str, help='Download dir')  # Data, results root directory 
 ```
+### Hyperparameter Tuning & description
 
-### Environment-수정필요
+```shell
+lr: learning rate
+wd: weight_decay
+epoch: training epoch
+batch_size: trainig batch size 
+embCh: GNN model channel
+numROI: number of RoI & intial node features dimension (do not change this argument)
+p_value: edge topology masking ratio ex) 0.05, 0.01, 0.1, ...
+optim: optimizer 
+gamma: ExponentialLR scheduler gamma (currently not in use for this project)
+momentum: optimizer argument- SGD, RMSProp
+betas: optimizer argument - Adam
+dropout_ratio: droput out ratio (currently, It is only use for the GAT model) 
+```
 
-- Python == 3.7.10
-- PyTorch == 1.9.0
-- torchgeometric == 1.9.0
-- CUDA == 
+
+### Environment
+
+- Python == 3.9.7
+- PyTorch == 1.11.0
+- torchgeometric == 2.0.4
+- numpy
+- pandas
+- matplotlib
+- scipy
+- scikit-learn
 
 
 ## 3. Dataset
@@ -98,6 +150,8 @@ USM | SIEMENS Trio | 46/25
 YALE | SIEMENS Trio | 28/28
 
 https://drive.google.com/drive/folders/1fDH3ULunE0tSVefErfpaZr7LX9vkEAjS?usp=share_link
+
+"Please download the data from the above Google Drive link and place it in the 'Data/Data_folder/' directory."
 
 ## 4. Experiments
 
