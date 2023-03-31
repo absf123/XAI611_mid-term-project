@@ -1,7 +1,9 @@
 # XAI611: mid-term-project
 autism spectrum disorder classification with multi site dataset
 
-"The description may be partially updated until April 3rd"
+[Notices]
+1) "The description may be partially updated until April 3rd"
+2) "Please do not modify the seeds (42, 56, 96, 100, 777) and test data."
 
 ## 1. Introduction
 
